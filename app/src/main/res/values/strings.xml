@@ -1,0 +1,62 @@
+<!--
+  ~ Copyright (C) 2020 Tu Yafeng
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Watt</string>
+    <string name="no_apps">No apps</string>
+    <string name="no_components">No components</string>
+    <string name="apps_installed">Installed apps</string>
+    <string name="apps_system">System apps</string>
+    <string name="apps_disabled">Disabled apps</string>
+    <string name="apps_all">All apps</string>
+    <string name="filter">Filter</string>
+    <string name="reload_apps">Reload apps</string>
+    <string name="activities">Activities</string>
+    <string name="services">Services</string>
+    <string name="receivers">Receivers</string>
+    <string name="providers">Providers</string>
+    <string name="rules_applied">Rules applied</string>
+    <string name="rules_unapplied">Rules unapplied</string>
+    <string name="disable_preset">Disable preset</string>
+    <string name="enable_all">Enable all</string>
+    <string name="disable_selected">Disable selected</string>
+    <string name="enable_selected">Enable selected</string>
+    <plurals name="disabled_selected_done">
+        <item quantity="one">Disabled 1 component</item>
+        <item quantity="other">Disabled %d components</item>
+    </plurals>
+    <plurals name="enabled_selected_done">
+        <item quantity="one">Enabled 1 component</item>
+        <item quantity="other">Enabled %d components</item>
+    </plurals>
+    <string name="settings">Settings</string>
+    <string name="general">General</string>
+    <string name="additional">Additional</string>
+    <string name="about">About</string>
+    <string name="empty_all_applied_rules">Empty all applied rules</string>
+    <string name="empty_all_applied_rules_done">All applied rules had been deleted</string>
+    <string name="empty_all_applied_rules_dialog">This will delete all files in /data/system/ifw to empty all applied rules, are you sure?</string>
+    <string name="set_captive_portal_server">Set captive portal server</string>
+    <string name="set_captive_portal_server_done">Captive portal server had been set, please open and close airplane mode to take effect it</string>
+    <string name="set_captive_portal_server_dialog">This will set captive portal server to MIUI server, are you sure?</string>
+    <string name="failed_to_execute_command">Failed to execute command</string>
+    <string name="developer_options">Developer options</string>
+    <string name="feedback">Feedback</string>
+    <string name="licenses">Licenses</string>
+    <string name="app_info">App info</string>
+    <string name="unable_to_set_rules">Unable to set rules for disabled app</string>
+</resources>

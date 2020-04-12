@@ -1,0 +1,60 @@
+<!--
+  ~ Copyright (C) 2020 Tu Yafeng
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Watt</string>
+    <string name="no_apps">无应用</string>
+    <string name="no_components">无组件</string>
+    <string name="apps_installed">用户应用</string>
+    <string name="apps_system">系统应用</string>
+    <string name="apps_disabled">停用的应用</string>
+    <string name="apps_all">全部应用</string>
+    <string name="filter">展示选项</string>
+    <string name="reload_apps">刷新列表</string>
+    <string name="activities">活动</string>
+    <string name="services">服务</string>
+    <string name="providers">提供者</string>
+    <string name="rules_applied">规则已应用</string>
+    <string name="rules_unapplied">规则未应用</string>
+    <string name="disable_preset">禁用预设</string>
+    <string name="enable_all">启用全部</string>
+    <string name="disable_selected">禁用选中</string>
+    <string name="enable_selected">启用选中</string>
+    <plurals name="disabled_selected_done">
+        <item quantity="other">禁用了 %d 个组件</item>
+    </plurals>
+    <plurals name="enabled_selected_done">
+        <item quantity="other">启用了 %d 个组件</item>
+    </plurals>
+    <string name="settings">设置</string>
+    <string name="general">常规</string>
+    <string name="additional">附加</string>
+    <string name="about">关于</string>
+    <string name="empty_all_applied_rules">清空已应用规则</string>
+    <string name="empty_all_applied_rules_dialog">这会删除 /data/system/ifw 下的所有文件来清空已应用规则，确认吗？</string>
+    <string name="set_captive_portal_server_done">网络校验服务器已被设置，请开关飞行模式来使其生效</string>
+    <string name="set_captive_portal_server_dialog">这会将网络校验服务器设置为 MIUI 服务器，确认吗？</string>
+    <string name="failed_to_execute_command">执行命令失败</string>
+    <string name="developer_options">开发者选项</string>
+    <string name="feedback">反馈</string>
+    <string name="licenses">开源协议</string>
+    <string name="empty_all_applied_rules_done">已清空全部应用规则</string>
+    <string name="set_captive_portal_server">清除网络叹号</string>
+    <string name="receivers">广播</string>
+    <string name="app_info">应用详情</string>
+    <string name="unable_to_set_rules">无法为已停用的应用设置规则</string>
+</resources>

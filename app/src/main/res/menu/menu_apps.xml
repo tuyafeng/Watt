@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2020 Tu Yafeng
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:icon="@drawable/ic_action_filter"
+        android:title="@string/filter"
+        app:iconTint="@color/colorIconTint"
+        app:showAsAction="ifRoom"
+        >
+        <menu>
+            <item
+                android:id="@+id/menu_filter_installed"
+                android:title="@string/apps_installed"
+                />
+            <item
+                android:id="@+id/menu_filter_system"
+                android:title="@string/apps_system"
+                />
+            <item
+                android:id="@+id/menu_filter_disabled"
+                android:title="@string/apps_disabled"
+                />
+            <item
+                android:id="@+id/menu_filter_all"
+                android:title="@string/apps_all"
+                />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_reload"
+        android:icon="@drawable/ic_action_reload"
+        android:title="@string/reload_apps"
+        app:iconTint="@color/colorIconTint"
+        />
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/settings"
+        app:iconTint="@color/colorIconTint"
+        />
+</menu>
