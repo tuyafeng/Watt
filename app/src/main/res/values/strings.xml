@@ -58,5 +58,4 @@
     <string name="feedback">Feedback</string>
     <string name="licenses">Licenses</string>
     <string name="app_info">App info</string>
-    <string name="unable_to_set_rules">Unable to set rules for disabled app</string>
 </resources>

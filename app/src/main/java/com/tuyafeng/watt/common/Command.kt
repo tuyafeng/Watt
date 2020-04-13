@@ -31,4 +31,3 @@ fun setCaptivePortalServer(): String? {
     }
 }
 
-fun queryRunningServices(pkg: String) = "dumpsys activity services -p $pkg | grep '* ServiceRecord{'"

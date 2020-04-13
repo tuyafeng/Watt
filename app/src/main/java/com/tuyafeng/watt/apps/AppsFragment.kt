@@ -17,6 +17,7 @@
 
 package com.tuyafeng.watt.apps
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -31,7 +32,6 @@ import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.EventObserver
 import com.tuyafeng.watt.common.defaultNavOptions
 import com.tuyafeng.watt.common.setupToolbar
-import com.tuyafeng.watt.common.showSnackbar
 import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.databinding.AppsFragBinding
 import dagger.android.support.DaggerFragment
@@ -64,6 +64,7 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         setupNavigation()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupToolbar() {
         setupToolbar(view?.toolbar) {
             inflateMenu(R.menu.menu_apps)
@@ -119,10 +120,6 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
     }
 
     private fun openAppDetail(app: App) {
-        if (app.disabled) {
-            view?.showSnackbar(R.string.unable_to_set_rules)
-            return
-        }
         val action =
             AppsFragmentDirections.actionAppsFragmentToAppDetailFragment(app.packageName, app.label)
         findNavController().navigate(action, defaultNavOptions())

@@ -17,6 +17,7 @@
 
 package com.tuyafeng.watt.appdetail
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -76,6 +77,7 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         setupPager()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupToolbar() {
         setupToolbar(toolbar, true) {
             title = args.label

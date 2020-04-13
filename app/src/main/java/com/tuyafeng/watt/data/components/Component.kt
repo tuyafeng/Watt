@@ -38,10 +38,6 @@ data class Component(
 
     var type: ComponentType = ComponentType.UNKNOWN
 
-    var flag: Int
-        private set(value) {}
-        get() = (if (disabled.get() == true) 0b1 else 0) or (if (running.get() == true) 0b10 else 0)
-
     override fun compareTo(other: Component): Int = compareValuesBy(
         this,
         other,

@@ -18,8 +18,9 @@
 package com.tuyafeng.watt.data.components.source
 
 import android.content.Intent
-import android.content.pm.ComponentInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import com.jaredrummler.android.shell.Shell
 import com.tuyafeng.watt.data.components.Component
 import com.tuyafeng.watt.data.components.ComponentType
@@ -35,64 +36,60 @@ class ComponentsLocalDataSource internal constructor(
         private const val IFW_DATA = "/data/system/ifw/"
     }
 
-    override suspend fun getActivities(pkg: String): List<Component> {
-        return getComponents(
-            packageManager.getPackageInfo(
-                pkg,
-                PackageManager.GET_ACTIVITIES
-            ).activities, ComponentType.ACTIVITY
-        )
-    }
-
-    override suspend fun getServices(pkg: String): List<Component> {
-        return getComponents(
-            packageManager.getPackageInfo(
-                pkg,
-                PackageManager.GET_SERVICES
-            ).services, ComponentType.SERVICE
-        )
-    }
-
-    override suspend fun getReceivers(pkg: String): List<Component> {
-        return getComponents(
-            packageManager.getPackageInfo(
-                pkg,
-                PackageManager.GET_RECEIVERS
-            ).receivers, ComponentType.RECEIVER
-        )
-    }
-
-    override suspend fun getProvider(pkg: String): List<Component> {
-        return getComponents(
-            packageManager.getPackageInfo(
-                pkg,
-                PackageManager.GET_PROVIDERS
-            ).providers, ComponentType.PROVIDER
-        )
-    }
-
-    private fun getComponents(
-        componentInfos: Array<out ComponentInfo>?,
-        type: ComponentType
-    ): List<Component> {
-        componentInfos?.let { list ->
-            return list.asSequence()
-                .map {
-                    Component().apply {
-                        this.name = it.name
-                        this.type = type
-                    }
+    override suspend fun getActivities(pkg: String): List<Component> =
+        getPackageInfo(pkg, PackageManager.GET_ACTIVITIES)?.activities?.let {
+            it.asSequence().map {
+                Component().apply {
+                    this.name = it.name
+                    this.type = ComponentType.ACTIVITY
                 }
-                .toList()
+            }.toList()
+        } ?: emptyList()
+
+    override suspend fun getServices(pkg: String): List<Component> =
+        getPackageInfo(pkg, PackageManager.GET_SERVICES)?.services?.let {
+            it.asSequence().map {
+                Component().apply {
+                    this.name = it.name
+                    this.type = ComponentType.SERVICE
+                }
+            }.toList()
+        } ?: emptyList()
+
+    override suspend fun getReceivers(pkg: String): List<Component> =
+        getPackageInfo(pkg, PackageManager.GET_RECEIVERS)?.receivers?.let {
+            it.asSequence().map {
+                Component().apply {
+                    this.name = it.name
+                    this.type = ComponentType.RECEIVER
+                }
+            }.toList()
+        } ?: emptyList()
+
+    override suspend fun getProvider(pkg: String): List<Component> =
+        getPackageInfo(pkg, PackageManager.GET_RECEIVERS)?.providers?.let {
+            it.asSequence().map {
+                Component().apply {
+                    this.name = it.name
+                    this.type = ComponentType.PROVIDER
+                }
+            }.toList()
+        } ?: emptyList()
+
+    private fun getPackageInfo(pkg: String, flag: Int): PackageInfo? {
+        val flags: Int = flag or (if (Build.VERSION.SDK_INT < 24)
+            PackageManager.GET_DISABLED_COMPONENTS else PackageManager.MATCH_DISABLED_COMPONENTS)
+        return try {
+            packageManager.getPackageInfo(pkg, flags)
+        } catch (e: PackageManager.NameNotFoundException) {
+            null
         }
-        return emptyList()
     }
 
     override suspend fun getReceiversActions(pkg: String): Map<String, Array<String>> {
         return packageManager.queryBroadcastReceivers(
             Intent().setPackage(pkg), PackageManager.GET_RESOLVED_FILTER
-        )
-            .asSequence()
+        ).asSequence()
             .filter { it.filter.countActions() > 0 }
             .map {
                 it.activityInfo.name to Array(it.filter.countActions()) { idx ->
@@ -129,12 +126,14 @@ class ComponentsLocalDataSource internal constructor(
 
 
     override suspend fun applyRules(pkg: String, apply: Boolean) {
-        if (!apply || !localRulesFile(pkg).exists()) {
-            if (isRulesApplied(pkg))
-                Shell.SU.run("rm -rf $IFW_DATA$pkg.xml && am force-stop $pkg")
-            return
-        }
-        Shell.SU.run("cp ${localRulesFile(pkg).absolutePath} $IFW_DATA && chmod 0666 $IFW_DATA$pkg.xml && am force-stop $pkg")
+        Shell.SU.run(
+            if (apply && localRulesFile(pkg).exists()) {
+                "cp ${localRulesFile(pkg).absolutePath} $IFW_DATA && chmod 0666 $IFW_DATA$pkg.xml && am force-stop $pkg"
+            } else {
+                // Delete ifw rules if exists
+                "test -e '${IFW_DATA}${pkg}.xml' && rm -rf $IFW_DATA$pkg.xml && am force-stop $pkg"
+            }
+        )
     }
 
     override suspend fun saveDisabledComponents(pkg: String, disabledComponents: List<Component>) {
