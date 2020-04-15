@@ -39,29 +39,41 @@ class FastComponentsRepository @Inject constructor(
             }
             cachedComponents.apply {
                 clear()
-                addAll(localDataSource.getReceivers(pkg))
-                val actions = localDataSource.getReceiversActions(pkg)
+                // The list behaves strangely when sorted, so pre-load the disabled components first
+                val disabled = localDataSource.getDisabledComponentNames(pkg)
+                val receivers = localDataSource.getReceivers(pkg).apply {
+                    val actions = localDataSource.getReceiverActions(pkg)
+                    forEach {
+                        it.disabled.set(disabled.contains(it.name))
+                        it.extra =
+                            actions[it.name]?.joinToString(separator = "\n") { action -> action }
+                                ?: it.extra
+                    }
+                }
+                addAll(receivers)
                 perform(this)
-                asSequence()
-                    .filter { actions[it.name] != null }
-                    .forEach { it.extra = actions[it.name]!!.joinToString(separator = "\n") { action-> action } }
                 val services = localDataSource.getServices(pkg).apply {
                     ServiceChecker.update(pkg)
-                    forEach { if (ServiceChecker.isRunning(it.name)) it.running.set(true) }
+                    forEach {
+                        if (ServiceChecker.isRunning(it.name)) it.running.set(true)
+                        it.disabled.set(disabled.contains(it.name))
+                    }
                 }
                 addAll(services)
-                addAll(localDataSource.getActivities(pkg))
-                perform(this)
-                val disabled = localDataSource.getDisabledComponentNames(pkg)
-                asSequence()
-                    .filter { disabled.contains(it.name) }
-                    .forEach { it.disabled.set(true) }
+                val activities = localDataSource.getActivities(pkg).apply {
+                    forEach { it.disabled.set(disabled.contains(it.name)) }
+                }
+                addAll(activities)
                 perform(this)
             }
         }
     }
 
-    override suspend fun saveDisableComponents(pkg: String, disabledComponents: List<Component>?, activated: Boolean) {
+    override suspend fun saveDisableComponents(
+        pkg: String,
+        disabledComponents: List<Component>?,
+        activated: Boolean
+    ) {
         disabledComponents?.let {
             withContext(ioDispatcher) {
                 localDataSource.saveDisabledComponents(pkg, it)

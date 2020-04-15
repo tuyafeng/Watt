@@ -86,7 +86,7 @@ class ComponentsLocalDataSource internal constructor(
         }
     }
 
-    override suspend fun getReceiversActions(pkg: String): Map<String, Array<String>> {
+    override suspend fun getReceiverActions(pkg: String): Map<String, Array<String>> {
         return packageManager.queryBroadcastReceivers(
             Intent().setPackage(pkg), PackageManager.GET_RESOLVED_FILTER
         ).asSequence()

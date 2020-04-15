@@ -24,7 +24,9 @@ data class Component(
     var extra: String = ""
 ) : Comparable<Component> {
     var simpleName: String = ""
-        private set(value) {}
+        private set(value) {
+            field = value
+        }
         get() {
             if (field.isEmpty() && name.isNotEmpty()) {
                 field = name.substringAfterLast('.')

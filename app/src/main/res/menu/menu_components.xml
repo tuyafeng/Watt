@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Tu Yafeng
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -16,34 +15,37 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_apply"
-        android:title="@string/rules_unapplied"
         android:icon="@drawable/ic_action_unapplied"
+        android:title="@string/rules_unapplied"
         app:iconTint="@color/colorIconTint"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_help"
+        android:icon="@drawable/ic_action_help"
+        android:title="@string/help"
+        app:iconTint="@color/colorIconTint"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_disable_preset"
-        android:title="@string/disable_preset"
         android:icon="@drawable/ic_action_disable"
+        android:title="@string/disable_preset"
         app:iconTint="@color/colorIconTint"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_enable_all"
-        android:title="@string/enable_all"
         android:icon="@drawable/ic_action_enable"
+        android:title="@string/enable_all"
         app:iconTint="@color/colorIconTint"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_app_info"
-        android:title="@string/app_info"
         android:icon="@drawable/ic_action_info"
+        android:title="@string/app_info"
         app:iconTint="@color/colorIconTint"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
 </menu>

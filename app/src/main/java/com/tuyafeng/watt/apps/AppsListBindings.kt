@@ -26,7 +26,7 @@ import com.tuyafeng.watt.common.dp
 import com.tuyafeng.watt.data.apps.App
 
 private val iconRect: Rect by lazy {
-    Rect(0, 0, 32.dp, 32.dp)
+    Rect(0, 0, 24.dp, 24.dp)
 }
 
 @BindingAdapter("items")
@@ -38,5 +38,5 @@ fun setItems(listView: RecyclerView, items: List<App>) {
 fun setLogo(textView: TextView, logo: Drawable?) {
     textView.setCompoundDrawablesRelative(logo?.apply {
         bounds = iconRect
-    },null,null,null)
+    }, null, null, null)
 }

@@ -28,9 +28,11 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class AppDetailModule {
 
-    @ContributesAndroidInjector(modules = [
-        ViewModelBuilder::class
-        ])
+    @ContributesAndroidInjector(
+        modules = [
+            ViewModelBuilder::class
+        ]
+    )
     internal abstract fun appDetailFragment(): AppDetailFragment
 
     @Binds

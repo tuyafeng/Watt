@@ -27,7 +27,11 @@ import androidx.navigation.NavOptions
 import com.tuyafeng.watt.R
 
 
-fun Fragment.setupToolbar(toolbar: Toolbar?, withBack: Boolean = false, action: Toolbar.() -> Unit) {
+fun Fragment.setupToolbar(
+    toolbar: Toolbar?,
+    withBack: Boolean = false,
+    action: Toolbar.() -> Unit
+) {
     toolbar?.apply {
         if (withBack) {
             navigationIcon =

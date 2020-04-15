@@ -15,7 +15,7 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Watt</string>
     <string name="no_apps">无应用</string>
     <string name="no_components">无组件</string>
@@ -56,5 +56,11 @@
     <string name="set_captive_portal_server">清除网络叹号</string>
     <string name="receivers">广播</string>
     <string name="app_info">应用详情</string>
-    <string name="unable_to_set_rules">无法为已停用的应用设置规则</string>
+    <string name="help">帮助</string>
+    <string name="help_content_components">
+        点击来禁用或启用某个组件；
+        \n正在运行的组件会高亮显示；
+        \n通过标题栏右上角圆形按钮来应用或取消规则。
+    </string>
+    <string name="rules_cancelled">规则已取消</string>
 </resources>

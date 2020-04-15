@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Tu Yafeng
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -18,43 +17,35 @@
 
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:icon="@drawable/ic_action_filter"
         android:title="@string/filter"
         app:iconTint="@color/colorIconTint"
-        app:showAsAction="ifRoom"
-        >
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/menu_filter_installed"
-                android:title="@string/apps_installed"
-                />
+                android:title="@string/apps_installed" />
             <item
                 android:id="@+id/menu_filter_system"
-                android:title="@string/apps_system"
-                />
+                android:title="@string/apps_system" />
             <item
                 android:id="@+id/menu_filter_disabled"
-                android:title="@string/apps_disabled"
-                />
+                android:title="@string/apps_disabled" />
             <item
                 android:id="@+id/menu_filter_all"
-                android:title="@string/apps_all"
-                />
+                android:title="@string/apps_all" />
         </menu>
     </item>
     <item
         android:id="@+id/menu_reload"
         android:icon="@drawable/ic_action_reload"
         android:title="@string/reload_apps"
-        app:iconTint="@color/colorIconTint"
-        />
+        app:iconTint="@color/colorIconTint" />
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_action_settings"
         android:title="@string/settings"
-        app:iconTint="@color/colorIconTint"
-        />
+        app:iconTint="@color/colorIconTint" />
 </menu>

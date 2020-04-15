@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.setupToolbar
-import kotlinx.android.synthetic.main.preference_frag.view.*
 
 class PreferenceWrapperFragment : Fragment() {
 
@@ -41,6 +40,8 @@ class PreferenceWrapperFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar(view.toolbar, true) {}
+        setupToolbar(view.findViewById(R.id.toolbar), true) {
+            title = getString(R.string.settings)
+        }
     }
 }

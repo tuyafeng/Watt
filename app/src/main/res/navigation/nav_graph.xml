@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Tu Yafeng
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -16,7 +15,8 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/appsFragment">
@@ -30,8 +30,7 @@
             app:destination="@id/appDetailFragment" />
         <action
             android:id="@+id/action_appsFragment_to_preferenceWrapperFragment"
-            app:destination="@id/preferenceWrapperFragment"
-            />
+            app:destination="@id/preferenceWrapperFragment" />
     </fragment>
     <fragment
         android:id="@+id/appDetailFragment"
@@ -42,16 +41,13 @@
             app:destination="@id/appsFragment" />
         <argument
             android:name="pkg"
-            app:argType="string"
-            />
+            app:argType="string" />
         <argument
             android:name="label"
-            app:argType="string"
-            />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/preferenceWrapperFragment"
         android:name="com.tuyafeng.watt.preference.PreferenceWrapperFragment"
-        android:label="PreferenceWrapperFragment"
-        />
+        android:label="PreferenceWrapperFragment" />
 </navigation>

@@ -21,7 +21,11 @@ interface ComponentsRepository {
 
     suspend fun getComponents(pkg: String, perform: (List<Component>) -> Unit)
 
-    suspend fun saveDisableComponents(pkg: String, disabledComponents: List<Component>?, activated: Boolean)
+    suspend fun saveDisableComponents(
+        pkg: String,
+        disabledComponents: List<Component>?,
+        activated: Boolean
+    )
 
     suspend fun isRulesApplied(pkg: String): Boolean
 

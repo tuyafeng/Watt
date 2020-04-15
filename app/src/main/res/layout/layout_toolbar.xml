@@ -14,11 +14,14 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
-<resources xmlns:tools="http://schemas.android.com/tools" translatable="false" tools:ignore="MissingTranslation">
-    <string name="pref_dev">dev</string>
-    <string name="pref_restore">restore</string>
-    <string name="pref_server">server</string>
-    <string name="pref_about">about</string>
-    <string name="pref_feedback">feedback</string>
-    <string name="pref_licenses">licenses</string>
-</resources>
+
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ActionBarTheme"
+    app:titleTextAppearance="@style/ActionBarTheme.Title"
+    />

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Tu Yafeng
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -16,36 +15,43 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    >
 
     <data>
+
         <variable
             name="app"
-            type="com.tuyafeng.watt.data.apps.App" />
+            type="com.tuyafeng.watt.data.apps.App"
+            />
 
         <variable
             name="viewmodel"
-            type="com.tuyafeng.watt.apps.AppsViewModel" />
+            type="com.tuyafeng.watt.apps.AppsViewModel"
+            />
     </data>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="14sp"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
+        android:alpha="@{app.disabled ? 0.3f : 1f}"
         android:background="?selectableItemBackground"
         android:clickable="true"
+        android:drawablePadding="12dp"
         android:focusable="true"
-        android:text="@{app.label}"
+        android:gravity="center_vertical"
         android:onClick="@{() -> viewmodel.openAppDetail(app)}"
-        android:alpha="@{app.disabled ? 0.3f : 1f}"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="14dp"
+        android:text="@{app.label}"
+        android:textSize="14sp"
         app:logo="@{app.icon}"
+        tool:text="@string/app_name"
         />
 
 </layout>

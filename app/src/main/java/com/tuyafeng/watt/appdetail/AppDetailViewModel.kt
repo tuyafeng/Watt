@@ -22,6 +22,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tuyafeng.watt.R
+import com.tuyafeng.watt.common.Event
 import com.tuyafeng.watt.data.components.Component
 import com.tuyafeng.watt.data.components.ComponentType
 import com.tuyafeng.watt.data.components.FastComponentsRepository
@@ -62,6 +63,9 @@ class AppDetailViewModel @Inject constructor(
     // new state
     var disableOp = true
 
+    private val _snackbarText = MutableLiveData<Event<Int>>()
+    val snackbarMessage: LiveData<Event<Int>> = _snackbarText
+
     fun loadComponents() {
         if (dataLoading) return
         dataLoading = true
@@ -92,7 +96,10 @@ class AppDetailViewModel @Inject constructor(
     }
 
     fun toggleAppliedState() {
-        _applied.value = !(_applied.value ?: false)
+        val newState = !(_applied.value ?: false)
+        _applied.value = newState
+        _snackbarText.value =
+            Event(if (newState) R.string.rules_applied else R.string.rules_cancelled)
         dataChanged = true
     }
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020 Tu Yafeng
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -18,16 +17,13 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/settings"
-    >
+    android:title="@string/settings">
 
     <PreferenceCategory android:title="@string/general">
 
         <Preference
             android:key="@string/pref_restore"
-            android:title="@string/empty_all_applied_rules"
-            />
+            android:title="@string/empty_all_applied_rules" />
 
     </PreferenceCategory>
 
@@ -35,13 +31,11 @@
 
         <Preference
             android:key="@string/pref_dev"
-            android:title="@string/developer_options"
-            />
+            android:title="@string/developer_options" />
 
         <Preference
             android:key="@string/pref_server"
-            android:title="@string/set_captive_portal_server"
-            />
+            android:title="@string/set_captive_portal_server" />
 
     </PreferenceCategory>
 
@@ -49,18 +43,15 @@
 
         <Preference
             android:key="@string/pref_about"
-            android:title="@string/app_name"
-            />
+            android:title="@string/app_name" />
 
         <Preference
             android:key="@string/pref_licenses"
-            android:title="@string/licenses"
-            />
+            android:title="@string/licenses" />
 
         <Preference
             android:key="@string/pref_feedback"
-            android:title="@string/feedback"
-            />
+            android:title="@string/feedback" />
 
     </PreferenceCategory>
 

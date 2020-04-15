@@ -39,8 +39,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tuyafeng.watt.R
+import com.tuyafeng.watt.common.setupSnackbar
 import com.tuyafeng.watt.common.setupToolbar
 import com.tuyafeng.watt.common.showSnackbar
 import dagger.android.support.DaggerFragment
@@ -74,13 +76,17 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupToolbar()
+        setupSnackbar()
         setupPager()
     }
 
     @SuppressLint("RestrictedApi")
     private fun setupToolbar() {
-        setupToolbar(toolbar, true) {
+        setupToolbar(view?.findViewById(R.id.toolbar), true) {
             title = args.label
+            val params: AppBarLayout.LayoutParams = this.layoutParams as AppBarLayout.LayoutParams
+            params.scrollFlags = (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                    or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
             inflateMenu(R.menu.menu_components)
             if (menu is MenuBuilder) {
                 (menu as MenuBuilder).setOptionalIconsVisible(true)
@@ -93,9 +99,10 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         }
     }
 
-    override fun onMenuItemClick(item: MenuItem?): Boolean  {
-        when(item?.itemId) {
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        when (item?.itemId) {
             R.id.menu_apply -> viewModel.toggleAppliedState()
+            R.id.menu_help -> openHelp()
             R.id.menu_disable_preset -> viewModel.disablePreset()
             R.id.menu_enable_all -> viewModel.enableAll()
             R.id.menu_app_info -> openAppInfo()
@@ -105,13 +112,18 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
 
     private fun setAppliedMenuItem(applied: Boolean) {
         applyMenuItem.apply {
-            setTitle(if (applied) R.string.rules_applied else R.string.rules_unapplied)
+            val title = if (applied) R.string.rules_applied else R.string.rules_unapplied
+            setTitle(title)
             setIcon(if (applied) R.drawable.ic_action_applied else R.drawable.ic_action_unapplied)
             icon.colorFilter = if (applied) PorterDuffColorFilter(
                 ContextCompat.getColor(requireContext(), R.color.colorAccent),
                 PorterDuff.Mode.SRC_ATOP
             ) else null
         }
+    }
+
+    private fun setupSnackbar() {
+        view?.setupSnackbar(this.viewLifecycleOwner, viewModel.snackbarMessage)
     }
 
     private fun setupPager() {
@@ -153,6 +165,15 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
             .setData(Uri.fromParts("package", args.pkg, null))
         requireActivity().startActivity(intent)
+    }
+
+    private fun openHelp() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle(R.string.help)
+            setMessage(R.string.help_content_components)
+            setCancelable(true)
+            setPositiveButton(android.R.string.ok, null)
+        }.show()
     }
 
     override fun onPause() {

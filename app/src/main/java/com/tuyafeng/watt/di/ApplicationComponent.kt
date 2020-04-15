@@ -32,7 +32,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         AppsModule::class,
         AppDetailModule::class
-    ])
+    ]
+)
 interface ApplicationComponent : AndroidInjector<WattApp> {
 
     @Component.Factory

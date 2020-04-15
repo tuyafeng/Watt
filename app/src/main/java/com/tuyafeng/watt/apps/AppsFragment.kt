@@ -35,7 +35,6 @@ import com.tuyafeng.watt.common.setupToolbar
 import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.databinding.AppsFragBinding
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.apps_frag.view.*
 import javax.inject.Inject
 
 class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
@@ -66,10 +65,11 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
 
     @SuppressLint("RestrictedApi")
     private fun setupToolbar() {
-        setupToolbar(view?.toolbar) {
+        setupToolbar(view?.findViewById(R.id.toolbar)) {
+            title = getString(R.string.app_name)
             inflateMenu(R.menu.menu_apps)
-            if (toolbar.menu is MenuBuilder) {
-                (toolbar.menu as MenuBuilder).setOptionalIconsVisible(true)
+            if (menu is MenuBuilder) {
+                (menu as MenuBuilder).setOptionalIconsVisible(true)
             }
             setOnMenuItemClickListener(this@AppsFragment)
         }

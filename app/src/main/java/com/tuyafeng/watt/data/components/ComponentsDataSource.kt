@@ -27,7 +27,7 @@ interface ComponentsDataSource {
 
     suspend fun getProvider(pkg: String): List<Component>
 
-    suspend fun getReceiversActions(pkg: String): Map<String, Array<String>>
+    suspend fun getReceiverActions(pkg: String): Map<String, Array<String>>
 
     suspend fun getDisabledComponentNames(pkg: String): Set<String>
 

@@ -2,7 +2,7 @@
 
 English|[中文](https://github.com/tuyafeng/Watt/blob/master/README_zh_CN.md)
 
-Watt is an open source android component management application. It uses IFW(Intent Firewall) to disable or enable components, **requires root permissions**. (It is not recommended that you root your phone unless you know what you are doing.)
+Watt is an open source android component management application. It uses IFW(Intent Firewall) to disable or enable components, **requires root permission**. (It is not recommended that you root your phone unless you know what you are doing.)
 
 ### Features
 
