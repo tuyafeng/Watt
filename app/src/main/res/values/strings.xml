@@ -65,4 +65,5 @@
         \nThe running services will be highlighted;
         \nClick the circle button in the title bar to enable or cancel the rule.
     </string>
+    <string name="search">Search</string>
 </resources>

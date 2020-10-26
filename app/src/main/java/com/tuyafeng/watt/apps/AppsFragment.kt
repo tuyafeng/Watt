@@ -19,11 +19,9 @@ package com.tuyafeng.watt.apps
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -71,6 +69,22 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
             if (menu is MenuBuilder) {
                 (menu as MenuBuilder).setOptionalIconsVisible(true)
             }
+            menu.findItem(R.id.menu_search)?.actionView?.apply {
+                if (this !is SearchView) return@apply
+                setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        if (newText.isNullOrEmpty()) {
+                            viewModel.loadApps(false)
+                        } else {
+                            viewModel.searchApps(newText)
+                        }
+                        return false
+                    }
+
+                    override fun onQueryTextSubmit(query: String?): Boolean = false
+                })
+            }
+            menu.findItem(R.id.menu_filter_installed)?.isChecked = true
             setOnMenuItemClickListener(this@AppsFragment)
         }
     }
@@ -78,6 +92,7 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
     override fun onMenuItemClick(item: MenuItem?): Boolean = when (item?.itemId) {
         R.id.menu_filter_installed, R.id.menu_filter_system,
         R.id.menu_filter_disabled, R.id.menu_filter_all -> {
+            item.isChecked = true
             viewModel.apply {
                 setFiltering(
                     when (item.itemId) {

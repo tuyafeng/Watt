@@ -58,6 +58,16 @@ class AppsViewModel @Inject constructor(
         }
     }
 
+    fun searchApps(keyWord: String) {
+        if (dataLoading) return
+        viewModelScope.launch {
+            appsRepository.getApps(false) {
+                showApps(it.filter { app -> app.label.contains(keyWord)
+                        || app.packageName.contains(keyWord) || app.pinyin.contains(keyWord) })
+            }
+        }
+    }
+
     private fun showApps(apps: List<App>) {
         _items.postValue(apps.asSequence().filter {
             when (_currentFiltering) {
@@ -66,7 +76,7 @@ class AppsViewModel @Inject constructor(
                 AppsFilterType.DISABLED_APPS -> it.disabled
                 else -> true
             }
-        }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.pinyin })).toList())
+        }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.pinyin }).toList())
     }
 
     fun setFiltering(requestType: AppsFilterType) {
@@ -76,4 +86,5 @@ class AppsViewModel @Inject constructor(
     fun openAppDetail(app: App) {
         _openAppEvent.value = Event(app)
     }
+
 }

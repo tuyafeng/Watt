@@ -34,24 +34,61 @@
             />
     </data>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> viewmodel.openAppDetail(app)}"
         android:alpha="@{app.disabled ? 0.3f : 1f}"
         android:background="?selectableItemBackground"
         android:clickable="true"
-        android:drawablePadding="12dp"
         android:focusable="true"
-        android:gravity="center_vertical"
-        android:onClick="@{() -> viewmodel.openAppDetail(app)}"
         android:paddingLeft="16dp"
-        android:paddingTop="14dp"
+        android:paddingTop="12dp"
         android:paddingRight="16dp"
-        android:paddingBottom="14dp"
-        android:text="@{app.label}"
-        android:textSize="14sp"
-        app:logo="@{app.icon}"
-        tool:text="@string/app_name"
-        />
+        android:paddingBottom="12dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_app_icon"
+            android:layout_width="@dimen/list_icon_size"
+            android:layout_height="@dimen/list_icon_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@{app.icon}"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_app_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="15sp"
+                android:text="@{app.label}" />
+
+            <TextView
+                android:id="@+id/tv_package_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="12sp"
+                android:text="@{app.packageName}" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
