@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.Event
+import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.data.components.Component
 import com.tuyafeng.watt.data.components.ComponentType
 import com.tuyafeng.watt.data.components.FastComponentsRepository
@@ -63,8 +64,17 @@ class AppDetailViewModel @Inject constructor(
     // new state
     var disableOp = true
 
+    private val _appDetailEvent = MutableLiveData<Event<App>>()
+    val appDetailEvent: LiveData<Event<App>> = _appDetailEvent
+
     private val _snackbarText = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> = _snackbarText
+
+    fun loadApp() {
+        viewModelScope.launch {
+            _appDetailEvent.postValue(Event(componentsRepository.getApp(pkg)))
+        }
+    }
 
     fun loadComponents() {
         if (dataLoading) return

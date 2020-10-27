@@ -18,6 +18,7 @@
 package com.tuyafeng.watt.data.components
 
 import com.tuyafeng.watt.common.ServiceChecker
+import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.di.ApplicationModule
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +31,10 @@ class FastComponentsRepository @Inject constructor(
 ) : ComponentsRepository {
 
     private var cachedComponents: MutableList<Component> = mutableListOf()
+
+    override suspend fun getApp(pkg: String): App = withContext(ioDispatcher) {
+        localDataSource.getApp(pkg)
+    }
 
     override suspend fun getComponents(pkg: String, perform: (List<Component>) -> Unit) {
         return withContext(ioDispatcher) {
@@ -83,5 +88,4 @@ class FastComponentsRepository @Inject constructor(
     }
 
     override suspend fun isRulesApplied(pkg: String): Boolean = localDataSource.isRulesApplied(pkg)
-
 }

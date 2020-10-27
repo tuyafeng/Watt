@@ -18,6 +18,7 @@
 package com.tuyafeng.watt.apps
 
 import androidx.lifecycle.*
+import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.Event
 import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.data.apps.FastAppsRepository
@@ -37,6 +38,12 @@ class AppsViewModel @Inject constructor(
 
     private val _openAppEvent = MutableLiveData<Event<App>>()
     val openAppEvent: LiveData<Event<App>> = _openAppEvent
+
+    private val _showAppMenuEvent = MutableLiveData<Event<String>>()
+    val showAppMenuEvent: LiveData<Event<String>> = _showAppMenuEvent
+
+    private val _snackbarText = MutableLiveData<Event<Int>>()
+    val snackbarMessage: LiveData<Event<Int>> = _snackbarText
 
     private var dataLoading = false
 
@@ -62,8 +69,9 @@ class AppsViewModel @Inject constructor(
         if (dataLoading) return
         viewModelScope.launch {
             appsRepository.getApps(false) {
-                showApps(it.filter { app -> app.label.contains(keyWord)
-                        || app.packageName.contains(keyWord) || app.pinyin.contains(keyWord) })
+                showApps(it.filter { app -> app.label.contains(keyWord, true)
+                        || app.packageName.contains(keyWord, true)
+                        || app.pinyin.contains(keyWord, true) })
             }
         }
     }
@@ -79,12 +87,25 @@ class AppsViewModel @Inject constructor(
         }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.pinyin }).toList())
     }
 
+    fun setAppState(pkg: String, disable: Boolean) {
+        viewModelScope.launch {
+            if ((disable && appsRepository.disableApp(pkg)) || (!disable && appsRepository.enableApp(pkg))) {
+                loadApps(false)
+            }
+            else _snackbarText.value = Event(R.string.failed_to_execute_command)
+        }
+    }
+
     fun setFiltering(requestType: AppsFilterType) {
         _currentFiltering = requestType
     }
 
     fun openAppDetail(app: App) {
         _openAppEvent.value = Event(app)
+    }
+
+    fun showAppMenu(pkg: String) {
+        _showAppMenuEvent.value = Event(pkg)
     }
 
 }

@@ -17,7 +17,11 @@
 
 package com.tuyafeng.watt.data.components
 
+import com.tuyafeng.watt.data.apps.App
+
 interface ComponentsRepository {
+
+    suspend fun getApp(pkg: String): App
 
     suspend fun getComponents(pkg: String, perform: (List<Component>) -> Unit)
 

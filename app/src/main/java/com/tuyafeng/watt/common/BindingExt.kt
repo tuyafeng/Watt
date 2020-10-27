@@ -15,14 +15,24 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.tuyafeng.watt.data.apps
+package com.tuyafeng.watt.common
 
-interface AppsRepository {
+import android.view.View
+import androidx.databinding.BindingAdapter
 
-    suspend fun getApps(forceUpdate: Boolean, perform: (List<App>) -> Unit)
+object BindingExt {
 
-    suspend fun disableApp(pkg: String): Boolean
+    private const val ON_LONG_CLICK = "android:onLongClick"
 
-    suspend fun enableApp(pkg: String): Boolean
-
+    @JvmStatic
+    @BindingAdapter(ON_LONG_CLICK)
+    fun setOnLongClickListener(
+        view: View,
+        func: () -> Unit
+    ) {
+        view.setOnLongClickListener {
+            func()
+            return@setOnLongClickListener true
+        }
+    }
 }

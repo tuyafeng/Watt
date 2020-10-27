@@ -52,6 +52,11 @@
             android:layout_height="match_parent"
             android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
             app:items="@{viewmodel.items}"
+            app:fastScrollEnabled="true"
+            app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollHorizontalTrackDrawable="@android:color/transparent"
+            app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollVerticalTrackDrawable="@android:color/transparent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             />

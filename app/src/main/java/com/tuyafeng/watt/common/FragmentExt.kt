@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.tuyafeng.watt.R
 
 

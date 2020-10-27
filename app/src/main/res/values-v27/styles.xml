@@ -23,5 +23,6 @@
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="android:navigationBarDividerColor">@color/colorPrimary</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
     </style>
 </resources>

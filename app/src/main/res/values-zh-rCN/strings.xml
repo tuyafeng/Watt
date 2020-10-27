@@ -63,4 +63,10 @@
         \n通过标题栏右上角圆形按钮来应用或取消规则。
     </string>
     <string name="rules_cancelled">规则已取消</string>
+    <string name="search">搜索</string>
+    <string name="uninstall">卸载</string>
+    <string name="view_in_settings">在系统设置查看</string>
+    <string name="view_in_app_market">在应用商店查看</string>
+    <string name="disable_app">停用应用</string>
+    <string name="enable_app">启用应用</string>
 </resources>

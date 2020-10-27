@@ -18,6 +18,8 @@
 package com.tuyafeng.watt.data.apps
 
 import android.graphics.drawable.Drawable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 data class App(
     var packageName: String = "",
@@ -25,5 +27,8 @@ data class App(
     var icon: Drawable? = null,
     var disabled: Boolean = false,
     var system: Boolean = false,
-    var pinyin: String = ""
+    var pinyin: String = "",
+    var versionName: String = "",
+    var versionCode: Long = 0L,
+    var targetSdkVersion: Int = 0
 )

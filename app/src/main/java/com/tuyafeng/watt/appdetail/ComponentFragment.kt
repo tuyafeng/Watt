@@ -64,7 +64,6 @@ class ComponentFragment : Fragment() {
                     .sorted()
                     .toList()
                 listAdapter.updateList(list)
-                components_list.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
                 empty_view.visibility = if (list.isNotEmpty()) View.GONE else View.VISIBLE
             })
         }

@@ -29,8 +29,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.jaredrummler.android.shell.Shell
 import com.tuyafeng.watt.BuildConfig
 import com.tuyafeng.watt.R
-import com.tuyafeng.watt.common.removeAllRules
-import com.tuyafeng.watt.common.setCaptivePortalServer
+import com.tuyafeng.watt.common.Commands
 import com.tuyafeng.watt.common.showSnackbar
 
 class PreferenceFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClickListener {
@@ -87,7 +86,7 @@ class PreferenceFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCl
             R.string.empty_all_applied_rules,
             R.string.empty_all_applied_rules_dialog,
             R.string.empty_all_applied_rules_done,
-            removeAllRules()
+            Commands.removeAllRules()
         )
     }
 
@@ -102,7 +101,7 @@ class PreferenceFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCl
             R.string.set_captive_portal_server,
             R.string.set_captive_portal_server_dialog,
             R.string.set_captive_portal_server_done,
-            setCaptivePortalServer()
+            Commands.setCaptivePortalServer()
         )
     }
 

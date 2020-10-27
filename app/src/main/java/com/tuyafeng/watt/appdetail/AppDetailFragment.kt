@@ -20,11 +20,13 @@ package com.tuyafeng.watt.appdetail
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -42,6 +44,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tuyafeng.watt.R
+import com.tuyafeng.watt.common.EventObserver
 import com.tuyafeng.watt.common.setupSnackbar
 import com.tuyafeng.watt.common.setupToolbar
 import com.tuyafeng.watt.common.showSnackbar
@@ -63,6 +66,7 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.pkg = args.pkg
+        viewModel.loadApp()
         viewModel.loadComponents()
     }
 
@@ -80,13 +84,12 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         setupPager()
     }
 
-    @SuppressLint("RestrictedApi")
+    @SuppressLint("RestrictedApi", "SetTextI18n")
     private fun setupToolbar() {
         setupToolbar(view?.findViewById(R.id.toolbar), true) {
+            toolbar_layout.title = args.label
+            toolbar_layout.setExpandedTitleColor(Color.TRANSPARENT)
             title = args.label
-            val params: AppBarLayout.LayoutParams = this.layoutParams as AppBarLayout.LayoutParams
-            params.scrollFlags = (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                    or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
             inflateMenu(R.menu.menu_components)
             if (menu is MenuBuilder) {
                 (menu as MenuBuilder).setOptionalIconsVisible(true)
@@ -97,6 +100,13 @@ class AppDetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
                 setAppliedMenuItem(it)
             })
         }
+        viewModel.appDetailEvent.observe(this.viewLifecycleOwner, EventObserver {
+            tv_app_name.text = it.label
+            tv_package_name.text = it.packageName
+            tv_app_version.text = "${it.versionName}(${it.versionCode})"
+            tv_app_target_sdk.text = "API ${it.targetSdkVersion}"
+            iv_app_icon.setImageDrawable(it.icon)
+        })
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {

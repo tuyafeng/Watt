@@ -24,18 +24,21 @@
     <fragment
         android:id="@+id/appsFragment"
         android:name="com.tuyafeng.watt.apps.AppsFragment"
-        android:label="AppsFragment">
+        android:label="Apps">
         <action
             android:id="@+id/action_appsFragment_to_appDetailFragment"
             app:destination="@id/appDetailFragment" />
         <action
             android:id="@+id/action_appsFragment_to_preferenceWrapperFragment"
             app:destination="@id/preferenceWrapperFragment" />
+        <action
+            android:id="@+id/action_appsFragment_to_appMenuFragment"
+            app:destination="@id/appMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/appDetailFragment"
         android:name="com.tuyafeng.watt.appdetail.AppDetailFragment"
-        android:label="AppDetailFragment">
+        android:label="AppDetail">
         <action
             android:id="@+id/action_appDetailFragment_to_appsFragment"
             app:destination="@id/appsFragment" />
@@ -49,5 +52,13 @@
     <fragment
         android:id="@+id/preferenceWrapperFragment"
         android:name="com.tuyafeng.watt.preference.PreferenceWrapperFragment"
-        android:label="PreferenceWrapperFragment" />
+        android:label="Preferences" />
+    <dialog
+        android:id="@+id/appMenuFragment"
+        android:name="com.tuyafeng.watt.apps.AppMenuFragment"
+        android:label="AppMenu">
+        <argument
+            android:name="pkg"
+            app:argType="string" />
+    </dialog>
 </navigation>

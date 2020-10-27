@@ -17,6 +17,7 @@
 
 package com.tuyafeng.watt.apps
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -63,6 +64,7 @@ class AppDiffCallback : DiffUtil.ItemCallback<App>() {
     }
 
     override fun areContentsTheSame(oldItem: App, newItem: App): Boolean {
-        return oldItem == newItem
+        return oldItem.packageName == newItem.packageName
+                && oldItem.label == newItem.label && oldItem.disabled == newItem.disabled
     }
 }

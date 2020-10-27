@@ -17,6 +17,8 @@
 
 package com.tuyafeng.watt.data.apps
 
+import com.jaredrummler.android.shell.Shell
+import com.tuyafeng.watt.common.Commands
 import com.tuyafeng.watt.di.ApplicationModule
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +44,26 @@ class FastAppsRepository @Inject constructor(
             perform(cachedApps)
             cachedApps.addAll(localDataSource.getSystemApps())
             perform(cachedApps)
+        }
+    }
+
+    override suspend fun disableApp(pkg: String): Boolean {
+        return withContext(ioDispatcher) {
+            val result = Shell.SU.run(Commands.disableApp(pkg)).isSuccessful
+            if (result) {
+                cachedApps.find { it.packageName == pkg }?.disabled = true
+            }
+            result
+        }
+    }
+
+    override suspend fun enableApp(pkg: String): Boolean {
+        return withContext(ioDispatcher) {
+            val result = Shell.SU.run(Commands.enableApp(pkg)).isSuccessful
+            if (result) {
+                cachedApps.find { it.packageName == pkg }?.disabled = false
+            }
+            result
         }
     }
 

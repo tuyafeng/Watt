@@ -66,4 +66,11 @@
         \nClick the circle button in the title bar to enable or cancel the rule.
     </string>
     <string name="search">Search</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="view_in_settings">View in settings</string>
+    <string name="view_in_app_market">View in the app market</string>
+    <string name="disable_app">Disable app</string>
+    <string name="enable_app">Enable app</string>
+    <string name="app_icon">App icon</string>
+
 </resources>

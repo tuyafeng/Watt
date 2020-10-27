@@ -17,7 +17,11 @@
 
 package com.tuyafeng.watt.data.components
 
+import com.tuyafeng.watt.data.apps.App
+
 interface ComponentsDataSource {
+
+    suspend fun getApp(pkg: String): App
 
     suspend fun getReceivers(pkg: String): List<Component>
 

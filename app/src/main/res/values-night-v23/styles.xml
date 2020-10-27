@@ -20,5 +20,6 @@
     <style name="AppBaseTheme" parent="BaseTheme">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
     </style>
 </resources>

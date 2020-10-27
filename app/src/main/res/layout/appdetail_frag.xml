@@ -18,24 +18,133 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <include layout="@layout/layout_toolbar" />
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/ActionBarTheme.Title"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="top|start"
+            app:expandedTitleMarginEnd="16dp"
+            app:expandedTitleMarginStart="75dp"
+            app:expandedTitleMarginTop="60dp"
+            app:expandedTitleTextAppearance="@style/ActionBarTheme.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:padding="16dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_app_icon"
+                    android:layout_width="@dimen/list_icon_size"
+                    android:layout_height="@dimen/list_icon_size"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_package_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@string/app_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_app_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/app_name"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_app_target_sdk"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="12dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_app_target_sdk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:textColor="?android:textColorHint"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="API 30"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_package_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/app_name"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_app_name"
+                    app:layout_constraintStart_toStartOf="@id/tv_app_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_app_name"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_app_version"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/app_name"
+                    android:textColor="?android:textColorSecondary"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_app_name"
+                    app:layout_constraintStart_toStartOf="@id/tv_app_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_package_name"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ActionBarTheme"
+                app:layout_collapseMode="pin"
+                />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabGravity="center"
+            android:layout_gravity="bottom"
+            app:layout_collapseMode="pin"
+            app:tabGravity="start"
             app:tabIndicatorFullWidth="false"
             app:tabMode="scrollable"
             app:tabPaddingEnd="12dp"
@@ -43,13 +152,12 @@
             app:tabTextAppearance="@style/TabLayoutTheme"
             />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

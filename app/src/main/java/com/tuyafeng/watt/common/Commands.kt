@@ -19,15 +19,21 @@ package com.tuyafeng.watt.common
 
 import android.os.Build
 
-fun removeAllRules(): String = "rm -f /data/system/ifw/*"
+object Commands {
+    fun removeAllRules(): String = "rm -f /data/system/ifw/*"
 
-fun setCaptivePortalServer(): String? {
-    val server = "connect.rom.miui.com"
-    return when {
-        Build.VERSION.SDK_INT >= 25 -> "settings put global captive_portal_http_url http://$server/generate_204 ; " +
-                "settings put global captive_portal_https_url https://$server/generate_204"
-        Build.VERSION.SDK_INT >= 21 -> "settings put global captive_portal_server $server"
-        else -> null
+    fun setCaptivePortalServer(): String? {
+        val server = "connect.rom.miui.com"
+        return when {
+            Build.VERSION.SDK_INT >= 25 -> "settings put global captive_portal_http_url http://$server/generate_204 ; " +
+                    "settings put global captive_portal_https_url https://$server/generate_204"
+            Build.VERSION.SDK_INT >= 21 -> "settings put global captive_portal_server $server"
+            else -> null
+        }
     }
+
+    fun disableApp(pkg: String): String = "pm disable $pkg"
+
+    fun enableApp(pkg: String): String = "pm enable $pkg"
 }
 

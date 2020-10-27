@@ -19,17 +19,19 @@ package com.tuyafeng.watt.apps
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.tuyafeng.watt.R
-import com.tuyafeng.watt.common.EventObserver
-import com.tuyafeng.watt.common.defaultNavOptions
-import com.tuyafeng.watt.common.setupToolbar
+import com.tuyafeng.watt.common.*
 import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.databinding.AppsFragBinding
 import dagger.android.support.DaggerFragment
@@ -57,8 +59,9 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupToolbar()
+        setupSnackbar()
         setupListAdapter()
-        setupNavigation()
+        setupObservers()
     }
 
     @SuppressLint("RestrictedApi")
@@ -128,10 +131,36 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         }
     }
 
-    private fun setupNavigation() {
+    private fun setupSnackbar() {
+        view?.setupSnackbar(this.viewLifecycleOwner, viewModel.snackbarMessage)
+    }
+
+    private fun setupObservers() {
         viewModel.openAppEvent.observe(this.viewLifecycleOwner, EventObserver {
             openAppDetail(it)
         })
+        viewModel.showAppMenuEvent.observe(this.viewLifecycleOwner, EventObserver {
+            showAppMenu(it)
+        })
+        findNavController().currentBackStackEntry?.savedStateHandle?.let { handle ->
+            handle.getLiveData<String>(AppMenuFragment.DISABLE).observe(
+                viewLifecycleOwner, Observer {
+                    if (it.isNullOrEmpty()) return@Observer
+                    viewModel.setAppState(it, true)
+                    handle.set(AppMenuFragment.DISABLE, "")
+                })
+            handle.getLiveData<String>(AppMenuFragment.ENABLE).observe(
+                viewLifecycleOwner, Observer {
+                    if (it.isNullOrEmpty()) return@Observer
+                    viewModel.setAppState(it, false)
+                    handle.set(AppMenuFragment.ENABLE, "")
+                })
+        }
+    }
+
+    private fun showAppMenu(pkg: String) {
+        val action = AppsFragmentDirections.actionAppsFragmentToAppMenuFragment(pkg)
+        findNavController().navigate(action, defaultNavOptions())
     }
 
     private fun openAppDetail(app: App) {

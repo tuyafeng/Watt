@@ -22,6 +22,8 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import com.jaredrummler.android.shell.Shell
+import com.tuyafeng.watt.common.queryPackage
+import com.tuyafeng.watt.data.apps.App
 import com.tuyafeng.watt.data.components.Component
 import com.tuyafeng.watt.data.components.ComponentType
 import com.tuyafeng.watt.data.components.ComponentsDataSource
@@ -34,6 +36,10 @@ class ComponentsLocalDataSource internal constructor(
 
     companion object {
         private const val IFW_DATA = "/data/system/ifw/"
+    }
+
+    override suspend fun getApp(pkg: String): App {
+        return packageManager.queryPackage(pkg) ?: App()
     }
 
     override suspend fun getActivities(pkg: String): List<Component> =
