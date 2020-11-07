@@ -22,11 +22,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.updateList
-import com.tuyafeng.watt.data.components.ComponentType
+import com.tuyafeng.watt.data.ComponentType
 import kotlinx.android.synthetic.main.components_frag.*
 
 class ComponentFragment : Fragment() {
@@ -58,7 +57,7 @@ class ComponentFragment : Fragment() {
         viewModel?.let { model ->
             listAdapter = ComponentsAdapter(model)
             components_list.adapter = listAdapter
-            model.components.observe(this.viewLifecycleOwner, Observer { components ->
+            model.components.observe(this.viewLifecycleOwner, { components ->
                 val list = components.asSequence()
                     .filter { it.type == showType }
                     .sorted()

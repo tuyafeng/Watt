@@ -42,6 +42,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ActionBarTheme.SmallTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
     <style name="TabLayoutTheme" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>

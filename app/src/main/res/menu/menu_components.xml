@@ -19,27 +19,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_apply"
-        android:icon="@drawable/ic_action_unapplied"
-        android:title="@string/rules_unapplied"
-        app:iconTint="@color/colorIconTint"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/menu_help"
         android:icon="@drawable/ic_action_help"
         android:title="@string/help"
         app:iconTint="@color/colorIconTint"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_disable_preset"
-        android:icon="@drawable/ic_action_disable"
-        android:title="@string/disable_preset"
-        app:iconTint="@color/colorIconTint"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_enable_all"
+        android:id="@+id/menu_restore"
         android:icon="@drawable/ic_action_enable"
-        android:title="@string/enable_all"
+        android:title="@string/restore"
         app:iconTint="@color/colorIconTint"
         app:showAsAction="never" />
     <item

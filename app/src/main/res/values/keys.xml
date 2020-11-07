@@ -15,10 +15,10 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 <resources xmlns:tools="http://schemas.android.com/tools" translatable="false" tools:ignore="MissingTranslation">
-    <string name="pref_dev">dev</string>
-    <string name="pref_restore">restore</string>
-    <string name="pref_server">server</string>
-    <string name="pref_about">about</string>
-    <string name="pref_feedback">feedback</string>
-    <string name="pref_licenses">licenses</string>
+    <string name="pref_dev" translatable="false">dev</string>
+    <string name="pref_restore" translatable="false">restore</string>
+    <string name="pref_server" translatable="false">server</string>
+    <string name="pref_about" translatable="false">about</string>
+    <string name="pref_feedback" translatable="false">feedback</string>
+    <string name="pref_licenses" translatable="false">licenses</string>
 </resources>

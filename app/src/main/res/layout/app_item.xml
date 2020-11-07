@@ -24,7 +24,7 @@
 
         <variable
             name="app"
-            type="com.tuyafeng.watt.data.apps.App"
+            type="com.tuyafeng.watt.data.App"
             />
 
         <variable

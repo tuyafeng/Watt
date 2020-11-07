@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tuyafeng.watt.R
-import com.tuyafeng.watt.data.components.Component
+import com.tuyafeng.watt.data.Component
 import com.tuyafeng.watt.databinding.ComponentItemBinding
 
 class ComponentsAdapter(private val viewModel: AppDetailViewModel) :

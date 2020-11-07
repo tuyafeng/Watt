@@ -19,15 +19,11 @@ package com.tuyafeng.watt.di
 
 import android.content.Context
 import android.content.pm.PackageManager
-import com.tuyafeng.watt.data.apps.AppsDataSource
-import com.tuyafeng.watt.data.apps.source.AppsLocalDataSource
-import com.tuyafeng.watt.data.components.ComponentsDataSource
-import com.tuyafeng.watt.data.components.source.ComponentsLocalDataSource
+import com.tuyafeng.watt.data.PackagesDataSource
+import com.tuyafeng.watt.data.PackagesLocalDataSource
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
-import java.io.File
-import java.io.FileNotFoundException
 import javax.inject.Qualifier
 import javax.inject.Singleton
 import kotlin.annotation.AnnotationRetention.RUNTIME
@@ -37,45 +33,16 @@ object ApplicationModule {
 
     @Qualifier
     @Retention(RUNTIME)
-    annotation class AppsLocalDataSource
-
-    @Qualifier
-    @Retention(RUNTIME)
-    annotation class ComponentsLocalDataSource
+    annotation class PackagesLocalDataSource
 
     @JvmStatic
     @Singleton
-    @AppsLocalDataSource
+    @PackagesLocalDataSource
     @Provides
-    fun provideAppsLocalDataSource(
+    fun providePackagesLocalDataSource(
         packageManager: PackageManager
-    ): AppsDataSource {
-        return AppsLocalDataSource(packageManager)
-    }
-
-    @JvmStatic
-    @Singleton
-    @ComponentsLocalDataSource
-    @Provides
-    fun provideComponentsLocalDataSource(
-        localIfwRulesPath: String,
-        packageManager: PackageManager
-    ): ComponentsDataSource {
-        return ComponentsLocalDataSource(localIfwRulesPath, packageManager)
-    }
-
-    @JvmStatic
-    @Singleton
-    @Provides
-    fun provideLocalIfwRulesPath(context: Context): String {
-        var file: File? = context.applicationContext.getExternalFilesDir("ifw")
-        if (file == null || (!file.exists() && !file.mkdirs())) {
-            file = File(context.applicationContext.filesDir, "ifw")
-            if (!file.exists() && !file.mkdirs()) {
-                throw FileNotFoundException("Can not get correct path to save ifw rules")
-            }
-        }
-        return file.absolutePath
+    ): PackagesDataSource {
+        return PackagesLocalDataSource(packageManager)
     }
 
     @JvmStatic
@@ -92,4 +59,4 @@ object ApplicationModule {
 }
 
 @Module
-abstract class ApplicationModuleBinds {}
+abstract class ApplicationModuleBinds

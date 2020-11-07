@@ -19,20 +19,22 @@ package com.tuyafeng.watt.apps
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import android.view.*
-import androidx.appcompat.view.menu.MenuBuilder
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.tuyafeng.watt.R
-import com.tuyafeng.watt.common.*
-import com.tuyafeng.watt.data.apps.App
+import com.tuyafeng.watt.common.EventObserver
+import com.tuyafeng.watt.common.defaultNavOptions
+import com.tuyafeng.watt.common.setupSnackbar
+import com.tuyafeng.watt.common.setupToolbar
+import com.tuyafeng.watt.data.App
 import com.tuyafeng.watt.databinding.AppsFragBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -69,9 +71,6 @@ class AppsFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         setupToolbar(view?.findViewById(R.id.toolbar)) {
             title = getString(R.string.app_name)
             inflateMenu(R.menu.menu_apps)
-            if (menu is MenuBuilder) {
-                (menu as MenuBuilder).setOptionalIconsVisible(true)
-            }
             menu.findItem(R.id.menu_search)?.actionView?.apply {
                 if (this !is SearchView) return@apply
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {

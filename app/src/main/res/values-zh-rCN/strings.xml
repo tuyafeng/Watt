@@ -28,45 +28,37 @@
     <string name="activities">活动</string>
     <string name="services">服务</string>
     <string name="providers">提供者</string>
-    <string name="rules_applied">规则已应用</string>
-    <string name="rules_unapplied">规则未应用</string>
-    <string name="disable_preset">禁用预设</string>
-    <string name="enable_all">启用全部</string>
-    <string name="disable_selected">禁用选中</string>
-    <string name="enable_selected">启用选中</string>
-    <plurals name="disabled_selected_done">
-        <item quantity="other">禁用了 %d 个组件</item>
-    </plurals>
-    <plurals name="enabled_selected_done">
-        <item quantity="other">启用了 %d 个组件</item>
-    </plurals>
     <string name="settings">设置</string>
     <string name="general">常规</string>
     <string name="additional">附加</string>
     <string name="about">关于</string>
-    <string name="empty_all_applied_rules">清空已应用规则</string>
-    <string name="empty_all_applied_rules_dialog">这会删除 /data/system/ifw 下的所有文件来清空已应用规则，确认吗？</string>
+    <string name="empty_all_ifw_rules">清空 Intent Firewall 规则</string>
+    <string name="empty_all_ifw_rules_summary">清空 Intent Firewall 规则以防止冲突</string>
+    <string name="empty_all_ifw_rules_done">已清空全部 Intent Firewall 规则</string>
+    <string name="empty_all_ifw_rules_dialog">这会删除 /data/system/ifw 下的所有文件来清空 Intent Firewall 规则，确认吗？</string>
     <string name="set_captive_portal_server_done">网络校验服务器已被设置，请开关飞行模式来使其生效</string>
     <string name="set_captive_portal_server_dialog">这会将网络校验服务器设置为 MIUI 服务器，确认吗？</string>
     <string name="failed_to_execute_command">执行命令失败</string>
     <string name="developer_options">开发者选项</string>
     <string name="feedback">反馈</string>
     <string name="licenses">开源协议</string>
-    <string name="empty_all_applied_rules_done">已清空全部应用规则</string>
     <string name="set_captive_portal_server">清除网络叹号</string>
-    <string name="receivers">广播</string>
+    <string name="receivers">接收器</string>
     <string name="app_info">应用详情</string>
     <string name="help">帮助</string>
     <string name="help_content_components">
         点击来禁用或启用某个组件；
-        \n正在运行的组件会高亮显示；
-        \n通过标题栏右上角圆形按钮来应用或取消规则。
+        \n正在运行的组件会高亮显示。
     </string>
-    <string name="rules_cancelled">规则已取消</string>
     <string name="search">搜索</string>
     <string name="uninstall">卸载</string>
     <string name="view_in_settings">在系统设置查看</string>
     <string name="view_in_app_market">在应用商店查看</string>
     <string name="disable_app">停用应用</string>
     <string name="enable_app">启用应用</string>
+    <string name="app_icon">应用图标</string>
+    <string name="restore">重置</string>
+    <string name="restore_message">这会将所有组件重置到默认状态，确认吗？</string>
+    <string name="restore_done">重置完成</string>
+
 </resources>

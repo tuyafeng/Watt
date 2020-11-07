@@ -20,13 +20,13 @@ package com.tuyafeng.watt.apps
 import androidx.lifecycle.*
 import com.tuyafeng.watt.R
 import com.tuyafeng.watt.common.Event
-import com.tuyafeng.watt.data.apps.App
-import com.tuyafeng.watt.data.apps.FastAppsRepository
+import com.tuyafeng.watt.data.FastPackagesRepository
+import com.tuyafeng.watt.data.App
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AppsViewModel @Inject constructor(
-    private val appsRepository: FastAppsRepository
+    private val appsRepository: FastPackagesRepository
 ) : ViewModel() {
 
     private val _items = MutableLiveData<List<App>>().apply { value = emptyList() }
@@ -81,7 +81,7 @@ class AppsViewModel @Inject constructor(
             when (_currentFiltering) {
                 AppsFilterType.INSTALLED_APPS -> !it.system
                 AppsFilterType.SYSTEM_APPS -> it.system
-                AppsFilterType.DISABLED_APPS -> it.disabled
+                AppsFilterType.DISABLED_APPS -> it.disabled.get() == true
                 else -> true
             }
         }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.pinyin }).toList())
@@ -89,10 +89,9 @@ class AppsViewModel @Inject constructor(
 
     fun setAppState(pkg: String, disable: Boolean) {
         viewModelScope.launch {
-            if ((disable && appsRepository.disableApp(pkg)) || (!disable && appsRepository.enableApp(pkg))) {
-                loadApps(false)
+            if ((disable && !appsRepository.disableApp(pkg)) || (!disable && !appsRepository.enableApp(pkg))) {
+                _snackbarText.value = Event(R.string.failed_to_execute_command)
             }
-            else _snackbarText.value = Event(R.string.failed_to_execute_command)
         }
     }
 

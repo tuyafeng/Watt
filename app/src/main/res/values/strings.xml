@@ -29,28 +29,14 @@
     <string name="services">Services</string>
     <string name="receivers">Receivers</string>
     <string name="providers">Providers</string>
-    <string name="rules_applied">Rules applied</string>
-    <string name="rules_cancelled">Cancelled rules</string>
-    <string name="rules_unapplied">Rules unapplied</string>
-    <string name="disable_preset">Disable preset</string>
-    <string name="enable_all">Enable all</string>
-    <string name="disable_selected">Disable selected</string>
-    <string name="enable_selected">Enable selected</string>
-    <plurals name="disabled_selected_done">
-        <item quantity="one">Disabled 1 component</item>
-        <item quantity="other">Disabled %d components</item>
-    </plurals>
-    <plurals name="enabled_selected_done">
-        <item quantity="one">Enabled 1 component</item>
-        <item quantity="other">Enabled %d components</item>
-    </plurals>
     <string name="settings">Settings</string>
     <string name="general">General</string>
     <string name="additional">Additional</string>
     <string name="about">About</string>
-    <string name="empty_all_applied_rules">Empty all applied rules</string>
-    <string name="empty_all_applied_rules_done">All applied rules had been deleted</string>
-    <string name="empty_all_applied_rules_dialog">This will delete all files in /data/system/ifw to empty all applied rules, are you sure?</string>
+    <string name="empty_all_ifw_rules">Empty all intent firewall rules</string>
+    <string name="empty_all_ifw_rules_summary">Clear the Intent Firewall rules to prevent conflicts</string>
+    <string name="empty_all_ifw_rules_done">All intent firewall rules had been deleted</string>
+    <string name="empty_all_ifw_rules_dialog">This will delete all files in /data/system/ifw to empty all intent firewall rules, are you sure?</string>
     <string name="set_captive_portal_server">Set captive portal server</string>
     <string name="set_captive_portal_server_done">Captive portal server had been set, please open and close airplane mode to take effect it</string>
     <string name="set_captive_portal_server_dialog">This will set captive portal server to MIUI server, are you sure?</string>
@@ -62,8 +48,7 @@
     <string name="help">Help</string>
     <string name="help_content_components">
         Click item to disable or enable component;
-        \nThe running services will be highlighted;
-        \nClick the circle button in the title bar to enable or cancel the rule.
+        \nThe running services will be highlighted.
     </string>
     <string name="search">Search</string>
     <string name="uninstall">Uninstall</string>
@@ -72,5 +57,8 @@
     <string name="disable_app">Disable app</string>
     <string name="enable_app">Enable app</string>
     <string name="app_icon">App icon</string>
+    <string name="restore">Restore</string>
+    <string name="restore_message">This will restore the state of all components to the default state, are you sure?</string>
+    <string name="restore_done">Restore done</string>
 
 </resources>

@@ -34,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@mipmap/ic_launcher"
         android:contentDescription="@string/app_icon"
+        android:layout_marginLeft="16dp"
         />
 
     <TextView
@@ -49,6 +50,8 @@
         android:textColor="?android:textColorPrimary"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="16dp"
         />
 
     <TextView
@@ -56,11 +59,11 @@
         style="@style/BottomSheetItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_action_disable"
         android:text="@string/disable_app"
         app:drawableTint="@color/colorIconTint"
         app:layout_constraintTop_toBottomOf="@id/tv_app_label"
         android:layout_marginTop="12dp"
+        app:drawableStartCompat="@drawable/ic_action_disable"
         />
 
     <TextView
@@ -68,10 +71,10 @@
         style="@style/BottomSheetItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_action_system_settings"
         android:text="@string/view_in_settings"
         app:drawableTint="@color/colorIconTint"
         app:layout_constraintTop_toBottomOf="@id/tv_disable_app"
+        app:drawableStartCompat="@drawable/ic_action_system_settings"
         />
 
     <TextView
@@ -79,10 +82,10 @@
         style="@style/BottomSheetItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_action_app_market"
         android:text="@string/view_in_app_market"
         app:drawableTint="@color/colorIconTint"
         app:layout_constraintTop_toBottomOf="@id/tv_view_in_settings"
+        app:drawableStartCompat="@drawable/ic_action_app_market"
         />
 
     <TextView
@@ -90,10 +93,10 @@
         style="@style/BottomSheetItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_action_uninstall"
         android:text="@string/uninstall"
         app:drawableTint="@color/colorIconTint"
         app:layout_constraintTop_toBottomOf="@id/tv_view_in_app_market"
+        app:drawableStartCompat="@drawable/ic_action_uninstall"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

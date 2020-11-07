@@ -21,6 +21,5 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T>?) {
-    if (list == this.currentList) notifyDataSetChanged() else this.submitList(list)
-    //this.submitList(if (list == this.currentList) list.toMutableList() else list)
+    this.submitList(if (list == this.currentList) list.toMutableList() else list)
 }

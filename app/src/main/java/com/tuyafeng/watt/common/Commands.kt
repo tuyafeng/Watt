@@ -35,5 +35,11 @@ object Commands {
     fun disableApp(pkg: String): String = "pm disable $pkg"
 
     fun enableApp(pkg: String): String = "pm enable $pkg"
+
+    fun disableComponent(pkg: String, name: String): String = "pm disable $pkg/$name"
+
+    fun enableComponent(pkg: String, name: String): String = "pm enable $pkg/$name"
+
+    fun restoreComponent(pkg: String, name: String): String = "pm default-state $pkg/$name"
 }
 

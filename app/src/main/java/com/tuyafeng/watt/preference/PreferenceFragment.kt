@@ -63,7 +63,7 @@ class PreferenceFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCl
             }
         }
         findPreference<Preference?>(requireContext().getString(R.string.pref_about))?.summary =
-            "v${BuildConfig.VERSION_NAME}"
+            BuildConfig.VERSION_NAME
         findPreference<Preference?>(requireContext().getString(R.string.pref_server))?.isVisible =
             Build.VERSION.SDK_INT >= 21
     }
@@ -83,9 +83,9 @@ class PreferenceFragment : PreferenceFragmentCompat(), Preference.OnPreferenceCl
 
     private fun restore() {
         confirmToRunCommand(
-            R.string.empty_all_applied_rules,
-            R.string.empty_all_applied_rules_dialog,
-            R.string.empty_all_applied_rules_done,
+            R.string.empty_all_ifw_rules,
+            R.string.empty_all_ifw_rules_dialog,
+            R.string.empty_all_ifw_rules_done,
             Commands.removeAllRules()
         )
     }

@@ -15,12 +15,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.tuyafeng.watt.data.apps
+package com.tuyafeng.watt.data
 
-interface AppsDataSource {
+interface PackagesDataSource {
 
     suspend fun getInstalledApps(): List<App>
 
     suspend fun getSystemApps(): List<App>
+
+    suspend fun queryApp(pkg: String): App
+
+    suspend fun disableApp(pkg: String): Boolean
+
+    suspend fun enableApp(pkg: String): Boolean
+
+    suspend fun getReceivers(pkg: String): List<Component>
+
+    suspend fun getActivities(pkg: String): List<Component>
+
+    suspend fun getServices(pkg: String): List<Component>
+
+    suspend fun getProvider(pkg: String): List<Component>
+
+    suspend fun disableComponent(pkg: String, name: String): Boolean
+
+    suspend fun enableComponent(pkg: String, name: String): Boolean
+
+    suspend fun restoreComponentState(pkg: String, name: String): Boolean
 
 }

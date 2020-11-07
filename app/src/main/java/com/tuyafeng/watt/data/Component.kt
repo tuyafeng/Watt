@@ -15,22 +15,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.tuyafeng.watt.data.components
+package com.tuyafeng.watt.data
 
-import com.tuyafeng.watt.data.apps.App
+import androidx.databinding.ObservableField
 
-interface ComponentsRepository {
+data class Component(
+    var name: String = "",
+    var extra: String = ""
+) : Comparable<Component> {
 
-    suspend fun getApp(pkg: String): App
+    var disabled = ObservableField(false)
 
-    suspend fun getComponents(pkg: String, perform: (List<Component>) -> Unit)
+    var running = ObservableField(false)
 
-    suspend fun saveDisableComponents(
-        pkg: String,
-        disabledComponents: List<Component>?,
-        activated: Boolean
-    )
+    var type: ComponentType = ComponentType.UNKNOWN
 
-    suspend fun isRulesApplied(pkg: String): Boolean
+    override fun compareTo(other: Component): Int = compareValuesBy(
+        this,
+        other,
+        { it.running.get() == false },
+        { it.disabled.get() == false },
+        { it.name })
 
+}
+
+enum class ComponentType {
+    ACTIVITY,
+    SERVICE,
+    RECEIVER,
+    PROVIDER,
+    UNKNOWN
 }

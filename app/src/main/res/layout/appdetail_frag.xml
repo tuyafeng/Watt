@@ -25,7 +25,6 @@
     >
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -39,8 +38,8 @@
             app:expandedTitleGravity="top|start"
             app:expandedTitleMarginEnd="16dp"
             app:expandedTitleMarginStart="75dp"
-            app:expandedTitleMarginTop="60dp"
-            app:expandedTitleTextAppearance="@style/ActionBarTheme.Title"
+            app:expandedTitleMarginTop="74dp"
+            app:expandedTitleTextAppearance="@style/ActionBarTheme.SmallTitle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar"
             >
@@ -69,7 +68,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="60dp"
-                    android:fontFamily="sans-serif-medium"
                     android:text="@string/app_name"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="14sp"
@@ -77,6 +75,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginEnd="12dp"
+                    android:visibility="invisible"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="12dp"
                     />
 
                 <TextView

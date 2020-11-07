@@ -15,17 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.tuyafeng.watt.data.apps
+package com.tuyafeng.watt.data
 
 import android.graphics.drawable.Drawable
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import androidx.databinding.ObservableField
 
 data class App(
     var packageName: String = "",
     var label: String = "",
     var icon: Drawable? = null,
-    var disabled: Boolean = false,
+    var disabled: ObservableField<Boolean> = ObservableField<Boolean>(false),
     var system: Boolean = false,
     var pinyin: String = "",
     var versionName: String = "",

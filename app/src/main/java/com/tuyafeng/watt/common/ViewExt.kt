@@ -20,7 +20,6 @@ package com.tuyafeng.watt.common
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 
 fun View.showSnackbar(resId: Int, timeLength: Int = 2000) {
@@ -36,7 +35,7 @@ fun View.setupSnackbar(
     snackbarEvent: LiveData<Event<Int>>,
     timeLength: Int = 2000
 ) {
-    snackbarEvent.observe(lifecycleOwner, Observer { event ->
+    snackbarEvent.observe(lifecycleOwner, { event ->
         event.getContentIfNotHandled()?.let {
             showSnackbar(context.getString(it), timeLength)
         }

@@ -22,9 +22,7 @@ import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
 import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
 import com.tuyafeng.watt.R
 
 
@@ -44,6 +42,9 @@ fun Fragment.setupToolbar(
                 }
             setNavigationOnClickListener { requireActivity().onBackPressed() }
         }
+        /*if (menu is MenuBuilder) {
+            (menu as MenuBuilder).setOptionalIconsVisible(true)
+        }*/
         action(this)
     }
 }

@@ -17,26 +17,11 @@
 
 package com.tuyafeng.watt.apps
 
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tuyafeng.watt.common.dp
-import com.tuyafeng.watt.data.apps.App
-
-private val iconRect: Rect by lazy {
-    Rect(0, 0, 24.dp, 24.dp)
-}
+import com.tuyafeng.watt.data.App
 
 @BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<App>) {
     (listView.adapter as AppsAdapter).submitList(items)
-}
-
-@BindingAdapter("logo")
-fun setLogo(textView: TextView, logo: Drawable?) {
-    textView.setCompoundDrawablesRelative(logo?.apply {
-        bounds = iconRect
-    }, null, null, null)
 }

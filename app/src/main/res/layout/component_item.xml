@@ -26,7 +26,7 @@
 
         <variable
             name="component"
-            type="com.tuyafeng.watt.data.components.Component"
+            type="com.tuyafeng.watt.data.Component"
             />
 
         <variable
@@ -38,7 +38,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="@{component.disabled ? 0.3f : 1f}"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
@@ -54,6 +53,7 @@
             android:id="@+id/component_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:alpha="@{component.disabled ? 0.3f : 1f}"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center_vertical"
             android:paddingTop="1dp"
@@ -73,6 +73,7 @@
             android:paddingBottom="1dp"
             android:text="@{component.extra}"
             android:textColor="?android:textColorHint"
+            android:alpha="@{component.disabled ? 0.3f : 1f}"
             android:textSize="12sp"
             android:visibility="@{component.extra.empty ? View.GONE : View.VISIBLE}"
             tools:text="@string/app_name"

@@ -23,7 +23,7 @@ object ServiceChecker {
     private val runningServices: MutableSet<String> = HashSet()
     private var pkg: String = ""
 
-    suspend fun update(pkg: String = this.pkg) {
+    fun update(pkg: String = this.pkg) {
         this.pkg = pkg
         if (pkg.isEmpty()) {
             runningServices.clear()

@@ -15,14 +15,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.tuyafeng.watt.data.apps
+package com.tuyafeng.watt.data
 
-interface AppsRepository {
+interface PackagesRepository {
 
     suspend fun getApps(forceUpdate: Boolean, perform: (List<App>) -> Unit)
+
+    suspend fun queryApp(pkg: String): App
 
     suspend fun disableApp(pkg: String): Boolean
 
     suspend fun enableApp(pkg: String): Boolean
 
+    suspend fun getComponents(forceUpdate: Boolean, pkg: String, perform: (List<Component>) -> Unit)
+
+    suspend fun disableComponent(pkg: String, name: String): Boolean
+
+    suspend fun enableComponent(pkg: String, name: String): Boolean
+
+    suspend fun restoreComponents(pkg: String): Boolean
 }

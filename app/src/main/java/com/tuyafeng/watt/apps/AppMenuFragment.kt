@@ -20,9 +20,6 @@ package com.tuyafeng.watt.apps
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
@@ -35,15 +32,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.github.promeg.pinyinhelper.Pinyin
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tuyafeng.watt.R
-import com.tuyafeng.watt.common.Event
 import com.tuyafeng.watt.common.queryPackage
-import com.tuyafeng.watt.data.apps.App
+import com.tuyafeng.watt.data.App
 import kotlinx.android.synthetic.main.app_menu_frag.*
 
 
@@ -93,18 +87,15 @@ class AppMenuFragment : BottomSheetDialogFragment() {
     }
 
     private fun setupViews() {
+        val isDisabled = app.disabled.get() == true
         tv_app_label.text = app.label
         iv_app_icon.setImageDrawable(app.icon)
         tv_disable_app.text =
-            getString(if (app.disabled) R.string.enable_app else R.string.disable_app)
-        tv_disable_app.compoundDrawables[0] = ContextCompat.getDrawable(
-            requireContext(),
-            if (app.disabled) R.drawable.ic_action_enable else R.drawable.ic_action_disable
-        );
+            getString(if (isDisabled) R.string.enable_app else R.string.disable_app)
         tv_disable_app.setOnClickListener {
             dismiss()
             findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                if (app.disabled) ENABLE else DISABLE, app.packageName)
+                if (isDisabled) ENABLE else DISABLE, app.packageName)
         }
         tv_view_in_settings.setOnClickListener {
             try {

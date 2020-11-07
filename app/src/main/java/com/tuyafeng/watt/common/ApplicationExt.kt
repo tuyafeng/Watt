@@ -17,14 +17,12 @@
 
 package com.tuyafeng.watt.common
 
-import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import com.github.promeg.pinyinhelper.Pinyin
-import com.tuyafeng.watt.BuildConfig
-import com.tuyafeng.watt.data.apps.App
+import com.tuyafeng.watt.data.App
 
 fun PackageManager.queryPackage(pkg: String) : App? {
     try {
@@ -34,7 +32,7 @@ fun PackageManager.queryPackage(pkg: String) : App? {
             packageName = packageInfo.packageName
             label = packageInfo.applicationInfo.loadLabel(this@queryPackage).toString()
             pinyin = Pinyin.toPinyin(label, "")
-            disabled = !packageInfo.applicationInfo.enabled
+            disabled.set(!packageInfo.applicationInfo.enabled)
             system = packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
             icon = packageInfo.applicationInfo.loadIcon(this@queryPackage)
             versionName = packageInfo.versionName
