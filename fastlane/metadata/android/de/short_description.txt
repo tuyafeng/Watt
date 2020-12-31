@@ -1,0 +1,1 @@
+Komponenten (Receiver/Services/Activities) einfach deaktivieren oder aktivieren
