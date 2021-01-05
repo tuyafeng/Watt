@@ -1,4 +1,4 @@
-<i>Watt</i> is an open source Android component management application. It uses IFW (Intent Firewall) to disable or enable components, requires root permissions.
+<i>Watt</i> is an open source Android component management application. It uses pm command to disable or enable components, requires root permissions.
 
 <b>Features:</b>
 
@@ -8,8 +8,6 @@
 * No data collection
 * Efficient and simple interface
 
-<b>IFW Introduction:</b>
+<b>Why not IFW?</b>
 
-The Intent Firewall is a component of the Android framework which allows for the enforcement of intents based on rules defined in XML files. It was introduced in Android version 4.4.2 (API 19), and still works in the latest version 11 (API 29). The Intent Firewall is only accessible via system applications and root users since configuring the firewall requires being able to write directly to the device’s filesystem.
-
-You can learn more details <a href='https://carteryagemann.com/pages/android-intent-firewall.html'>here</a>.
+In version 2.0, Watt has completely abandoned disabling components through the Intent Firewall, because ifw will cause android10+ devices to keep restarting. In view of this poor performance, Watt 2.0 uses pm commands to refactor the entire application.

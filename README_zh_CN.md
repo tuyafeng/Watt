@@ -2,7 +2,7 @@
 
 [English](https://github.com/tuyafeng/Watt/blob/master/README.md)|中文
 
-Watt 是一个安卓组件管理的开源应用，使用 IFW(Intent Firewall) 来禁用或启用组件，**需要 ROOT 权限**。(不推荐 ROOT 你的手机除非你知道你在干什么。)
+Watt 是一个安卓组件管理的开源应用，使用 `pm` 命令来禁用或启用组件，**需要 ROOT 权限**。(不推荐 ROOT 你的手机除非你知道你在干什么。)
 
 ### 特性
 
@@ -12,13 +12,9 @@ Watt 是一个安卓组件管理的开源应用，使用 IFW(Intent Firewall) �
 4. 不收集数据
 5. 高效简洁的界面
 
-### IFW 简介
+### 为什么弃用 IFW？
 
-IFW(Intent Firewall) 是 Android 框架的一个组件，它允许基于 XML 文件中定义的规则来调整 Intent。IFW 是在 Android 4.4.2 (API 19) 中引入的，并且仍在最新版本 Android 11 (API 29) 中起作用。由于配置 IFW 要求能够直接写入系统文件，因此只能通过系统应用程序或 root 权限配置。
-
-IFW 如何运作？在 Android 系统中通过 Intent 启动组件，而启动的 Intent 都会经过 IFW(Intent 防火墙)。 这意味着 IFW 有权允许或拒绝任何 Intent。当将 XML 文件写入或删除时，IFW 也能够动态更新其规则集，这使其成为可动态配置的灵活系统。
-
-你可以在[这里](https://carteryagemann.com/pages/android-intent-firewall.html)了解更多细节。
+在 2.0 版本，Watt 完全抛弃了 IFW（Intent Firewall）的实现，改用传统的 pm 命令来禁用组件。因为在 android10+ 设备上，写入 IFW 规则会造成设备不断重启，鉴于这个糟糕表现，Watt 2.0 使用了 pm 命令重构了整个应用。
 
 ### 致谢
 

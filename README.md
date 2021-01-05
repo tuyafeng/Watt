@@ -2,7 +2,7 @@
 
 English|[中文](https://github.com/tuyafeng/Watt/blob/master/README_zh_CN.md)
 
-Watt is an open-source android component management application. It uses IFW(Intent Firewall) to disable or enable components, **requires root permission**. (It is not recommended that you root your phone unless you know what you are doing.)
+Watt is an open-source android component management application. It uses `pm` command to disable or enable components, **requires root permission**. (It is not recommended that you root your phone unless you know what you are doing.)
 
 ### Features
 
@@ -12,15 +12,9 @@ Watt is an open-source android component management application. It uses IFW(Int
 4. No data collection
 5. Efficient and simple interface
 
-### IFW Introduction
+### Why not IFW?
 
-The Intent Firewall is a component of the Android framework that allows for the enforcement of intents based on rules defined in XML files. It was introduced in Android version 4.4.2 (API 19), and still works in the latest version 11 (API 29). The Intent Firewall is only accessible via system applications and root users since configuring the firewall requires being able to write directly to the device's filesystem.
-
-The following is a description of how the IFW works:
-
-> Every intent started in the Android framework, including intents created by the operating system, go through the Intent Firewall. This means that the Intent Firewall has the power to allow or deny any intent. The Intent Firewall is also able to dynamically update its rule set as XML files are written to and deleted from the Intent Firewall directory which makes it a very flexible system to configure on the fly.
-
-You can learn more details [here](https://carteryagemann.com/pages/android-intent-firewall.html).
+In version 2.0, Watt has completely abandoned disabling components through the Intent Firewall, because ifw will cause android10+ devices to keep restarting. In view of this poor performance, Watt 2.0 uses pm commands to refactor the entire application.
 
 ### Thanks
 

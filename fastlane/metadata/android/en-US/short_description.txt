@@ -1,1 +1,1 @@
-disable or enable components(receivers/services/activities) easily
+Disable or enable components(receivers/services/activities) easily
