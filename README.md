@@ -4,6 +4,10 @@ English|[中文](https://github.com/tuyafeng/Watt/blob/master/README_zh_CN.md)
 
 Watt is an open-source android component management application. It uses `pm` command to disable or enable components, **requires root permission**. (It is not recommended that you root your phone unless you know what you are doing.)
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.tuyafeng.watt/)
+
 ### Features
 
 1. Disable or enable components(receivers/services/activities) easily
