@@ -2,7 +2,7 @@
 
 <b>Features:</b>
 
-* Disable or enable components(receivers/services/activities) easily
+* Disable or enable components (receivers/services/activities) easily
 * Block a broadcast so that no app can receive it to wake itself
 * Block the bad Keep-Alive services of some apps without errors
 * No data collection
